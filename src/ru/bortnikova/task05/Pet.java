@@ -77,16 +77,30 @@ public class Pet {
     }
 }
 
+/**
+ * компоратор для сравнения Pet по владельцу
+ */
 class PetOwnerComporator implements Comparator<Pet> {
     @Override
     public int compare(Pet p1, Pet p2) {
         return p1.getOwner().compareTo(p2.getOwner());
     }
 }
-
+/**
+ * компоратор для сравнения Pet по кличке
+ */
 class PetNameComporator implements Comparator<Pet> {
     @Override
     public int compare(Pet p1, Pet p2) {
         return p1.getName().compareTo(p2.getName());
+    }
+}
+/**
+ * компоратор для сравнения Pet по весу
+ */
+class PetWeightComporator implements Comparator<Pet> {
+    @Override
+    public int compare(Pet p1, Pet p2) {
+        return (p1.getWeight()-p2.getWeight())>0 ? 1:-1;
     }
 }
