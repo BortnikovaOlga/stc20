@@ -13,11 +13,11 @@ import java.util.UUID;
  * @author Bortnikova Olga
  */
 public class Pet {
-    UUID UIN;
-    String name;
-    String type;
-    Person owner;
-    Float weight;
+    private UUID UIN;
+    private String name;
+    private String type;
+    private Person owner;
+    private Float weight;
 
     public Pet(UUID UIN, String name, String type, Person owner, Float weight) {
         this.UIN = UIN;
