@@ -10,14 +10,14 @@ import java.util.Random;
  */
 public class RandWords {
     static private Random rand = new Random();
-    static int MAX_CHARS;// максимальное количество букв в слове
-    static int MAX_WORDS;// максимальное количество слов в предложении
-    static int MAX_SENTENS;// максимальное количество предложений в абзаце.
+    private int MAX_CHARS;// максимальное количество букв в слове
+    private int MAX_WORDS;// максимальное количество слов в предложении
+    private int MAX_SENTENS;// максимальное количество предложений в абзаце.
 
     static final double COMMA_P = 0.25; // эмперическая вероятность запятой в предложении
     static final double POINT_P = 0.75; // эмперическая вероятность точки в конце предложения
     static final double QMARK_P = 0.15; // эмперическая вероятность вопроса в конце предложения
-    static int SIZE_TEXT = 3000;
+    private int SIZE_TEXT = 3000;
 
     RandWords(int maxchars, int maxwords, int maxsentens) {
         MAX_CHARS = maxchars;
@@ -32,7 +32,7 @@ public class RandWords {
      * @param p вероятность события
      * @return true - если событие "произошло"
      */
-    static boolean randProbability(double p) {
+    boolean randProbability(double p) {
         return Math.random() < p;
     }
 
