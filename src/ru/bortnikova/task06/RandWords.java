@@ -19,7 +19,7 @@ public class RandWords {
     static final double QMARK_P = 0.15; // эмперическая вероятность вопроса в конце предложения
     private int SIZE_TEXT = 3000;
 
-    RandWords(int maxchars, int maxwords, int maxsentens) {
+    public RandWords(int maxchars, int maxwords, int maxsentens) {
         MAX_CHARS = maxchars;
         MAX_WORDS = maxwords;
         MAX_SENTENS = maxsentens;
@@ -32,7 +32,7 @@ public class RandWords {
      * @param p вероятность события
      * @return true - если событие "произошло"
      */
-    boolean randProbability(double p) {
+    public boolean randProbability(double p) {
         return Math.random() < p;
     }
 
@@ -62,7 +62,7 @@ public class RandWords {
      * @param wordBook   слово, которое войдет в результат
      * @return составленное предложение
      */
-    StringBuilder sentence(int countWords, String wordBook) {
+    public StringBuilder sentence(int countWords, String wordBook) {
         if (countWords == 1) return new StringBuilder().append('$').append(wordBook);
         int k = rand.nextInt(countWords); // место вхождения слова-параметра
         StringBuilder s = (k == 0) ?
@@ -82,7 +82,7 @@ public class RandWords {
      * @param countWords количество слов
      * @return составленное предложение
      */
-    StringBuilder sentence(int countWords) {
+    public StringBuilder sentence(int countWords) {
         StringBuilder s = randWord(MAX_CHARS, true);
         if (countWords == 1) return s;
         for (int i = 1; i < countWords; i++) {
@@ -100,7 +100,7 @@ public class RandWords {
      * @param probability   вероятность вхождения слова из словаря в следующее предложение (не больше еденицы !)
      * @return составленное предложение
      */
-    StringBuilder randSentence(int maxCountWords, String[] wordBook, double probability) {
+    public StringBuilder randSentence(int maxCountWords, String[] wordBook, double probability) {
         int countWords = rand.nextInt(maxCountWords) + 1;
         StringBuilder s = randProbability(probability) ?
                 sentence(countWords, wordBook[rand.nextInt(wordBook.length)]) :
@@ -118,7 +118,7 @@ public class RandWords {
      * @param probability вероятность вхождения слова из словаря в следующее предложение (не больше еденицы !)
      * @return составленный текст
      */
-    StringBuilder randParagraph(int maxSentens, String[] WordBook, double probability) {
+    public StringBuilder randParagraph(int maxSentens, String[] WordBook, double probability) {
         StringBuilder paragrath = new StringBuilder();
         for (int i = rand.nextInt(maxSentens) + 1; i > 0; i--) {
             paragrath = paragrath.append(randSentence(MAX_WORDS, WordBook, probability));
@@ -135,7 +135,7 @@ public class RandWords {
      * @param probability вероятность вхождения слова из словаря в следующее предложение (не больше еденицы !)
      * @throws IOException
      */
-    void randFile(String filename, String[] WordBook, double probability) throws IOException {
+    public void randFile(String filename, String[] WordBook, double probability) throws IOException {
         try (FileWriter fw = new FileWriter(filename);
              BufferedWriter bw = new BufferedWriter(fw)) {
             while (true) {
@@ -157,7 +157,7 @@ public class RandWords {
      * @param probability вероятность вхождения слова из словаря в следующее предложение (не больше еденицы !)
      * @throws IOException
      */
-    void getFiles(String path, int n, int size, String[] words, double probability) throws IOException {
+    public void getFiles(String path, int n, int size, String[] words, double probability) throws IOException {
         for (int i = 0; i < n; i++) {
             SIZE_TEXT = size;
             randFile(path + "/random_" + i + ".txt", words, probability);
