@@ -1,11 +1,6 @@
 package ru.bortnikova.task15;
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 /**
- * класс для работы с таблицей users
+ * объект User соответствует записи в таблице user
  *
  * @author Bortnikova Olga
  */
@@ -28,52 +23,32 @@ public class User {
         this.description = description;
     }
 
-    /**
-     * метод добавляет новую запись в таблицу users в соответствии с состоянием объекта user
-     *
-     * @param connect соединение с БД
-     * @return true при успешной операции, false если запись не добавлена
-     */
-    public boolean insertDB(Connection connect) {
-        try (PreparedStatement preparedStatement = connect.prepareStatement(
-                "INSERT INTO users (id, name, birthday, login_id, city, email, desctiption) \n"
-                        + "VALUES (?,?,?,?,?,?,?);");) {
-            preparedStatement.setInt(1, this.id);
-            preparedStatement.setString(2, this.name);
-            preparedStatement.setDate(3, Date.valueOf(this.bithday));
-            preparedStatement.setInt(4, this.login_id);
-            preparedStatement.setString(5, this.city);
-            preparedStatement.setString(6, this.email);
-            preparedStatement.setString(7, this.description);
-            preparedStatement.execute();
-            return true;
-        } catch (SQLException e) {
-            return false;
-        }
+    public int getId() {
+        return id;
     }
 
-    /**
-     * метод добавляет записи в таблицу users
-     *
-     * @param connect соединение с БД
-     * @param user массив объектов User
-     * @throws SQLException
-     */
-    public static void insertDB(Connection connect, User[] user) throws SQLException {
-        PreparedStatement preparedStatement = connect.prepareStatement(
-                "INSERT INTO users (id, name, birthday, login_id, city, email, desctiption) \n"
-                        + "VALUES (?,?,?,?,?,?,?);");
-        for (User u : user) {
-            preparedStatement.setInt(1, u.id);
-            preparedStatement.setString(2, u.name);
-            preparedStatement.setDate(3, Date.valueOf(u.bithday));
-            preparedStatement.setInt(4, u.login_id);
-            preparedStatement.setString(5, u.city);
-            preparedStatement.setString(6, u.email);
-            preparedStatement.setString(7, u.description);
-            preparedStatement.addBatch();
-        }
-        preparedStatement.executeBatch();
+    public String getName() {
+        return name;
+    }
+
+    public String getBithday() {
+        return bithday;
+    }
+
+    public int getLogin_id() {
+        return login_id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }
