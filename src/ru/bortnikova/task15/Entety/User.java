@@ -1,4 +1,4 @@
-package ru.bortnikova.task15;
+package ru.bortnikova.task15.Entety;
 /**
  * объект User соответствует записи в таблице user
  *

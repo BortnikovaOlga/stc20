@@ -1,7 +1,7 @@
-package ru.bortnikova.task15;
+package ru.bortnikova.task15.Entety;
 
 /**
- * объект UserRole соответствует записи в таблице user_role
+ * объект UserRole соответствует записи в таблице userrole
  *
  * @author Bortnikova Olga
  */
